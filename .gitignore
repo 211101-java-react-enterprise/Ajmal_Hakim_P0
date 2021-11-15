@@ -1,0 +1,10 @@
+#IDE- Specific files
+.idea/
+*.iml
+
+#Compile/Package files
+out/
+*.class
+*.jar
+*.war
+*.ear
