@@ -1,2 +1,4 @@
-package com.revature.AHBank.Screen;public class DashboardScreen {
+package com.revature.AHBank.Screens;
+
+public class DashboardScreen {
 }
