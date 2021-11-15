@@ -1,6 +1,9 @@
 package com.revature.AHBank.models;
 
+import java.util.Objects;
+
 public class BankUser {
+    private String id;
     private String firstName;
     private String lastName;
     private String email;
@@ -12,10 +15,27 @@ public class BankUser {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.ssn = ssn;
+        this.ssn=ssn;
         this.username = username;
         this.password = password;
+
     }
+    public BankUser(String id, String firstName, String lastName, String email,String ssn, String username, String password) {
+        this(firstName, lastName, email,ssn, username, password);
+        this.id = id;
+    }
+    public BankUser(){
+        super();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
 
     public String getFirstName() {
         return firstName;
@@ -65,9 +85,12 @@ public class BankUser {
         this.password = password;
     }
 
+
+
     @Override
     public String toString() {
         return "BankUser{" +
+                "ID = " + id +'\''+
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
@@ -77,14 +100,41 @@ public class BankUser {
                 '}';
     }
 
+    public String toFileString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(id).append(":")
+                .append(firstName).append(":")
+                .append(lastName).append(":")
+                .append(email).append(":")
+                .append(ssn).append(":")
+                .append(username).append(":")
+                .append(password);
+        return builder.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BankUser bankUser = (BankUser) o;
+        return Objects.equals(id, bankUser.id) && Objects.equals(firstName, bankUser.firstName) && Objects.equals(lastName, bankUser.lastName) && Objects.equals(email, bankUser.email)&& Objects.equals(ssn, bankUser.ssn) && Objects.equals(username, bankUser.username) && Objects.equals(password, bankUser.password);
+    }
+
     public String fileFormat(){
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(firstName).append(":")
+        stringBuilder.append(id).append(":")
+                .append(firstName).append(":")
                 .append(lastName).append(":")
                 .append(email).append(":")
                 .append(ssn).append(":")
                 .append(username).append(":")
                 .append(password);
         return stringBuilder.toString();
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, email,ssn, username, password);
     }
 }
